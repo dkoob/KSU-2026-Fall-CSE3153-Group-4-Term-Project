@@ -1,4 +1,6 @@
-def add_transaction(account_id: int, category_id: int, amount: float, transaction_date, merchant_id: int = None, description: str = None) -> int | None:
+def add_transaction(connection, account_id: int, category_id: int, amount: float, transaction_date, merchant_id: int = None, description: str = None) -> int | None:
+    cursor = connection.cursor()
+
     """
     Create a new transaction.
     Returns the new transaction ID, or None if unsuccessful.
@@ -7,7 +9,9 @@ def add_transaction(account_id: int, category_id: int, amount: float, transactio
     """
     pass
 
-def get_transactions(account_id: int = None) -> list[dict]:
+def get_transactions(connection, account_id: int = None) -> list[dict]:
+    cursor = connection.cursor()
+
     """
     Retrieve transactions.
     Optionally filter by account ID.
@@ -15,7 +19,9 @@ def get_transactions(account_id: int = None) -> list[dict]:
     """
     pass
 
-def update_transaction(transaction_id: int, account_id: int, category_id: int, amount: float, transaction_date, merchant_id: int = None, description: str = None) -> bool:
+def update_transaction(connection, transaction_id: int, account_id: int, category_id: int, amount: float, transaction_date, merchant_id: int = None, description: str = None) -> bool:
+    cursor = connection.cursor()
+
     """
     Update an existing transaction using its ID.
     Returns True if updated, otherwise False.
@@ -25,7 +31,9 @@ def update_transaction(transaction_id: int, account_id: int, category_id: int, a
     """
     pass
 
-def delete_transaction(transaction_id: int) -> bool:
+def delete_transaction(connection, transaction_id: int) -> bool:
+    cursor = connection.cursor()
+
     """
     Delete a transaction using its ID.
     Returns True if deleted, otherwise False.

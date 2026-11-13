@@ -1,4 +1,6 @@
-def set_budget(account_id: int, category_id: int, monthly_limit: float, month: int, year: int) -> bool:
+def set_budget(connection, account_id: int, category_id: int, monthly_limit: float, month: int, year: int) -> bool:
+    cursor = connection.cursor()
+
     """
     Create or update a budget for an account and category
     for a specific month and year.
@@ -8,7 +10,9 @@ def set_budget(account_id: int, category_id: int, monthly_limit: float, month: i
     """
     pass
 
-def get_budgets(account_id: int = None, month: int = None, year: int = None) -> list[dict]:
+def get_budgets(connection, account_id: int = None, month: int = None, year: int = None) -> list[dict]:
+    cursor = connection.cursor()
+
     """
     Retrieve budgets.
     Optionally filter by account, month, and year.
@@ -16,7 +20,9 @@ def get_budgets(account_id: int = None, month: int = None, year: int = None) -> 
     """
     pass
 
-def get_budget_remaining(account_id: int, category_id: int, month: int, year: int) -> dict | None:
+def get_budget_remaining(connection, account_id: int, category_id: int, month: int, year: int) -> dict | None:
+    cursor = connection.cursor()
+
     """
     Calculate a category's budget limit, amount spent,
     and remaining amount for a specific month.

@@ -1,4 +1,6 @@
-def get_spending_by_category(account_id: int = None, month: int = None, year: int = None) -> list[dict]:
+def get_spending_by_category(connection, account_id: int = None, month: int = None, year: int = None) -> list[dict]:
+    cursor = connection.cursor()
+
     """
     Retrieve total expenses grouped by category.
     Optionally filter by account and month/year.
@@ -8,7 +10,9 @@ def get_spending_by_category(account_id: int = None, month: int = None, year: in
     """
     pass
 
-def get_income_vs_expenses(account_id: int = None, month: int = None, year: int = None) -> dict:
+def get_income_vs_expenses(connection, account_id: int = None, month: int = None, year: int = None) -> dict:
+    cursor = connection.cursor()
+
     """
     Retrieve total income, total expenses, and net income.
     Optionally filter by account and month/year.
@@ -20,7 +24,9 @@ def get_income_vs_expenses(account_id: int = None, month: int = None, year: int 
     """
     pass
 
-def get_top_merchants(account_id: int = None, month: int = None, year: int = None, limit: int = 5) -> list[dict]:
+def get_top_merchants(connection, account_id: int = None, month: int = None, year: int = None, limit: int = 5) -> list[dict]:
+    cursor = connection.cursor()
+
     """
     Retrieve merchants ranked by total transaction spending.
     Optionally filter by account and month/year.
