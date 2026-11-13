@@ -45,8 +45,8 @@ CREATE TABLE tracker.Accounts (
     account_name        VARCHAR(100) NOT NULL,
     account_type        VARCHAR(30) NOT NULL,
 
-    starting_balance    DECIMAL(10,2) NOT NULL
-        CONSTRAINT DF_Accounts_StartingBalance DEFAULT (0.00),
+    account_balance    DECIMAL(10,2) NOT NULL
+        CONSTRAINT DF_Accounts_AccountBalance DEFAULT (0.00),
 
     created_at          DATETIME2 NOT NULL
         CONSTRAINT DF_Accounts_CreatedAt DEFAULT (SYSDATETIME()),
@@ -133,7 +133,7 @@ GO
 
 -- #3.1: Insert data into Accounts table.
 INSERT INTO tracker.Accounts
-    (account_name, account_type, starting_balance)
+    (account_name, account_type, account_balance)
 VALUES
     ('John_Checking', 'Checking', 1500.00),
     ('John_Savings', 'Savings', 5000.00),
