@@ -32,3 +32,12 @@ def budget_menu(connection):
 
     if choice is None or choice == "Back":
         return
+
+    elif choice == "Set Budget":
+        pass
+
+    elif choice == "Get Budgets":
+        pass
+
+    elif choice == "Calculate Remaining Budget":
+        pass

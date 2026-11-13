@@ -82,15 +82,15 @@ GO
 -- #2.4: Create the Transactions table.
 CREATE TABLE tracker.Transactions
 (
-    transaction_id      INT IDENTITY(1,1) NOT NULL,
-    account_id          INT NOT NULL,
-    category_id         INT NOT NULL,
-    merchant_id         INT NULL,
-    amount              DECIMAL(10,2) NOT NULL,
-    transaction_date    DATETIME2 NOT NULL,
-    description         VARCHAR(255) NULL,
+    transaction_id              INT IDENTITY(1,1) NOT NULL,
+    account_id                  INT NOT NULL,
+    category_id                 INT NOT NULL,
+    merchant_id                 INT NULL,
+    transaction_amount          DECIMAL(10,2) NOT NULL,
+    transaction_date            DATETIME2 NOT NULL,
+    transaction_description     VARCHAR(255) NULL,
 
-    created_at             DATETIME2 NOT NULL
+    created_at                  DATETIME2 NOT NULL
         CONSTRAINT DF_Transactions_CreatedAt DEFAULT (SYSDATETIME()),
 
     CONSTRAINT PK_Transactions PRIMARY KEY (transaction_id),
@@ -100,7 +100,7 @@ CREATE TABLE tracker.Transactions
         FOREIGN KEY (category_id) REFERENCES tracker.Categories (category_id),
     CONSTRAINT FK_Transactions_Merchants
         FOREIGN KEY (merchant_id) REFERENCES tracker.Merchants (merchant_id),
-    CONSTRAINT CK_Transactions_Amount CHECK (amount > 0)
+    CONSTRAINT CK_Transactions_Amount CHECK (transaction_amount > 0)
 );
 GO
 
@@ -111,8 +111,8 @@ CREATE TABLE tracker.Budgets
     account_id          INT NOT NULL,
     category_id         INT NOT NULL,
     monthly_limit       DECIMAL(10,2) NOT NULL,
-    [month]             INT NOT NULL,
-    [year]              INT NOT NULL,
+    budget_month        INT NOT NULL,
+    budget_year         INT NOT NULL,
 
     CONSTRAINT PK_Budgets PRIMARY KEY (budget_id),
     CONSTRAINT FK_Budgets_Accounts
@@ -120,10 +120,10 @@ CREATE TABLE tracker.Budgets
     CONSTRAINT FK_Budgets_Categories
         FOREIGN KEY (category_id) REFERENCES tracker.Categories (category_id),
     CONSTRAINT CK_Budgets_MonthlyLimit CHECK (monthly_limit > 0),
-    CONSTRAINT CK_Budgets_Month CHECK ([month] BETWEEN 1 AND 12),
-    CONSTRAINT CK_Budgets_Year CHECK ([year] >= 1),
+    CONSTRAINT CK_Budgets_Month CHECK (budget_month BETWEEN 1 AND 12),
+    CONSTRAINT CK_Budgets_Year CHECK (budget_year >= 1),
     CONSTRAINT UQ_Budgets_AccountCategoryMonthYear
-        UNIQUE (account_id, category_id, [month], [year])
+        UNIQUE (account_id, category_id, budget_month, budget_year)
 );
 GO
 
@@ -168,7 +168,7 @@ GO
 -- #3.4 Insert data into Transactions. 
 -- (All amounts are positive, the category determines if the transaction is income or expense)
 INSERT INTO tracker.Transactions
-    (account_id, category_id, merchant_id, amount, transaction_date, description)
+    (account_id, category_id, merchant_id, transaction_amount, transaction_date, transaction_description)
 VALUES
     (1, 7, NULL,    2400.00,    '2026-11-01T09:00:00',      'Monthly paycheck'),
     (1, 1, 1,       86.42,      '2026-11-02T17:30:00',      'Weekly grocery shopping'),
@@ -187,7 +187,7 @@ GO
 
 -- #3.5 Insert data into Budgets.
 INSERT INTO tracker.Budgets
-    (account_id, category_id, monthly_limit, [month], [year])
+    (account_id, category_id, monthly_limit, budget_month, budget_year)
 VALUES
     (1, 1, 400.00, 11, 2026),  -- 400 on groceries
     (1, 2, 180.00, 11, 2026),  -- 180 on dining

@@ -35,3 +35,21 @@ def account_menu(connection):
 
     if choice is None or choice == "Back":
         return
+
+    elif choice == "Get Accounts":
+        pass
+
+    elif choice == "Add Account":
+        pass
+
+    elif choice == "Get Account Balance":
+        pass
+
+    elif choice == "Get Account Transactions":
+        pass
+
+    elif choice == "Get Account Categories":
+        pass
+
+    elif choice == "Get Account Merchants":
+        pass

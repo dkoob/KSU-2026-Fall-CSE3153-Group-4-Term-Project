@@ -32,3 +32,12 @@ def report_menu(connection):
 
     if choice is None or choice == "Back":
         return
+
+    elif choice == "Get Spending By Category":
+        pass
+
+    elif choice == "Get Income vs Expenses":
+        pass
+
+    elif choice == "Get Top Merchants":
+        pass

@@ -33,3 +33,15 @@ def transaction_menu(connection):
 
     if choice is None or choice == "Back":
         return
+
+    elif choice == "Add Transaction":
+        pass
+
+    elif choice == "Delete Transaction":
+        pass
+
+    elif choice == "Update Transaction":
+        pass
+
+    elif choice == "Get Transactions":
+        pass
