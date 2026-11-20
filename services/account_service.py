@@ -1,12 +1,12 @@
 from decimal import Decimal
 
 def _rows_to_dicts(cursor) -> list[dict]:
-     """
+    """
     Helper: turns the rows from the last query into a list of dictionaries,
     using the column names as keys. Example: {"account_id": 1, "account_name": "John_Checking", ...}
     """
-     columns = [column[0] for column in cursor.description]
-     return [dict(zip(columns, row)) for row in cursor.fetchall()]
+    columns = [column[0] for column in cursor.description]
+    return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
 def get_accounts(connection) -> list[dict]:
     """
