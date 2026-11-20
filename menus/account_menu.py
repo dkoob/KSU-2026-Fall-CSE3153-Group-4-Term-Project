@@ -70,8 +70,7 @@ def get_account_message(connection):
         Panel(
             f"[bold {account_color}]YOUR ACCOUNTS[/bold {account_color}]\n"
             "View all registered accounts",
-            border_style=f"{account_color}",
-            padding=1
+            border_style=account_color
         )
     )
 
@@ -81,7 +80,8 @@ def get_account_message(connection):
     else:
         table = Table(
             header_style=f"bold {account_color}",
-            show_lines=True
+            show_lines=True,
+            border_style=account_color
         )
 
         table.add_column("ID", justify="center")
